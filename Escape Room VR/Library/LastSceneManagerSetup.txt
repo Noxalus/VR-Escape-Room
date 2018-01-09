@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/VRTK/Examples/044_CameraRig_RestrictedTeleportZones.unity
+- path: Assets/EscapeRoom/Scenes/Room.unity
   isLoaded: 1
   isActive: 1
