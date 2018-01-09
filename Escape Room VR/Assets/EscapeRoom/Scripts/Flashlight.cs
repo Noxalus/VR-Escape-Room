@@ -5,6 +5,7 @@
     public class Flashlight : VRTK_InteractableObject
     {
         private VRTK_ControllerReference controllerReference;
+        private Light spotlight;
 
         public override void Grabbed(VRTK_InteractGrab grabbingObject)
         {
@@ -32,6 +33,27 @@
                 var hapticStrength = 10;
                 VRTK_ControllerHaptics.TriggerHapticPulse(controllerReference, hapticStrength, 0.5f, 0.01f);
             }
+        }
+
+        public override void StartUsing(VRTK_InteractUse usingObject)
+        {
+            base.StartUsing(usingObject);
+
+            if (spotlight)
+                spotlight.enabled = true;
+        }
+
+        public override void StopUsing(VRTK_InteractUse usingObject)
+        {
+            base.StopUsing(usingObject);
+
+            if (spotlight)
+                spotlight.enabled = false;
+        }
+
+        protected void Start()
+        {
+            spotlight = GameObject.Find("Spotlight").GetComponent<Light>();
         }
     }
 }
