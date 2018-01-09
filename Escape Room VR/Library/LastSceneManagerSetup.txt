@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/VRTK/Examples/044_CameraRig_RestrictedTeleportZones.unity
+  isLoaded: 1
+  isActive: 1
