@@ -6,6 +6,9 @@
     {
         private VRTK_ControllerReference controllerReference;
         private Light spotlight;
+        public AudioClip TurnOnSound;
+        public AudioClip TurnOffSound;
+        private AudioSource audioSource;
 
         public override void Grabbed(VRTK_InteractGrab grabbingObject)
         {
@@ -40,7 +43,12 @@
             base.StartUsing(usingObject);
 
             if (spotlight)
+            {
+                audioSource.clip = TurnOnSound;
+                audioSource.Play();
+
                 spotlight.enabled = true;
+            }
         }
 
         public override void StopUsing(VRTK_InteractUse usingObject)
@@ -48,11 +56,17 @@
             base.StopUsing(usingObject);
 
             if (spotlight)
+            {
+                audioSource.clip = TurnOnSound;
+                audioSource.Play();
+
                 spotlight.enabled = false;
+            }
         }
 
         protected void Start()
         {
+            audioSource = GetComponent<AudioSource>();
             spotlight = GameObject.Find("Spotlight").GetComponent<Light>();
         }
     }
