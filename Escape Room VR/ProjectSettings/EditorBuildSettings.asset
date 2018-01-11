@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/EscapeRoom/Scenes/Room.unity
+    guid: 3bdc42fe7f8a7734a801c9577e2161a3
