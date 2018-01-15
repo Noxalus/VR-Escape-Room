@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 502e7869e3c3899439b87eaadc784a01
-timeCreated: 1515769126
+guid: 79e3c0d29da82634592c66957ce5baa2
+timeCreated: 1516027899
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Sheet
+    2100000: Paper
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Plane
+    4300000: Sheet
   externalObjects: {}
   materials:
     importMaterials: 1
