@@ -18,7 +18,7 @@ public class Digicode : MonoBehaviour
 
     public void ButtonPressed(string value)
     {
-        if (value == "/CLEAR")
+        if (value == "C")
             enteredCode = "";
         else
         {
