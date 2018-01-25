@@ -66,8 +66,8 @@
 
         protected void Start()
         {
-            audioSource = GetComponent<AudioSource>();
-            spotlight = GameObject.Find("Spotlight").GetComponent<Light>();
+            audioSource = gameObject.AddComponent<AudioSource>();
+            spotlight = GetComponentInChildren<Light>();
         }
     }
 }
