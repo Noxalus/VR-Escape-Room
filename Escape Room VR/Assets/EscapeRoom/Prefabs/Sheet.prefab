@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4091288089269378}
   - component: {fileID: 33130119451575574}
   - component: {fileID: 23828833103307234}
+  - component: {fileID: 64246425050967160}
   m_Layer: 0
   m_Name: sheet
   m_TagString: Untagged
@@ -52,12 +53,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4599765770756182}
-  - component: {fileID: 65472299149372696}
   - component: {fileID: 114580591949455810}
   - component: {fileID: 114559150620482896}
   - component: {fileID: 54306036075603306}
   - component: {fileID: 114851226820310724}
   - component: {fileID: 114332948376648476}
+  - component: {fileID: 114045052134588100}
   m_Layer: 0
   m_Name: Sheet
   m_TagString: Untagged
@@ -72,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1709077580320186}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0.013, z: -0.022}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 7, y: 10, z: 0.060000002}
   m_Children: []
   m_Father: {fileID: 4599765770756182}
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1910757480602332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46544, y: 1.4589, z: 0.33985}
+  m_LocalPosition: {x: 0.40723604, y: 1.3963, z: -0.9021582}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4091288089269378}
@@ -162,18 +163,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65472299149372696
-BoxCollider:
+--- !u!64 &64246425050967160
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1910757480602332}
+  m_GameObject: {fileID: 1709077580320186}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.14383379, y: 0.0036244392, z: 0.20417657}
-  m_Center: {x: 0.00039093196, y: -0.00013792515, z: 0.000106319785}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 79e3c0d29da82634592c66957ce5baa2, type: 3}
 --- !u!114 &114015168465407204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,6 +190,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   sdkOverrides: []
+--- !u!114 &114045052134588100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910757480602332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5acc68a2ecf98824ba3f8fa739c53028, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Material: 2
 --- !u!114 &114332948376648476
 MonoBehaviour:
   m_ObjectHideFlags: 1
