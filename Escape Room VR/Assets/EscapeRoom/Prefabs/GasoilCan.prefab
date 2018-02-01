@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114496050175162140}
   - component: {fileID: 114240754318568650}
   m_Layer: 0
-  m_Name: Gasoil Can
+  m_Name: GasoilCan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

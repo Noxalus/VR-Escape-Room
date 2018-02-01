@@ -10,6 +10,8 @@
         public AudioClip TurnOffSound;
         private AudioSource audioSource;
 
+        private bool turnedOn = false;
+
         public override void Grabbed(VRTK_InteractGrab grabbingObject)
         {
             base.Grabbed(grabbingObject);
@@ -22,52 +24,35 @@
             controllerReference = null;
         }
 
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            controllerReference = null;
-            interactableRigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (VRTK_ControllerReference.IsValid(controllerReference) && IsGrabbed())
-            {
-                var hapticStrength = 10;
-                VRTK_ControllerHaptics.TriggerHapticPulse(controllerReference, hapticStrength, 0.5f, 0.01f);
-            }
-        }
-
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
             base.StartUsing(usingObject);
 
             if (spotlight)
             {
-                audioSource.clip = TurnOnSound;
-                audioSource.Play();
+                turnedOn = !turnedOn;
+                spotlight.enabled = turnedOn;
+                audioSource.clip = turnedOn ? TurnOnSound : TurnOffSound;
 
-                spotlight.enabled = true;
+                audioSource.Play();
             }
         }
 
         public override void StopUsing(VRTK_InteractUse usingObject)
         {
             base.StopUsing(usingObject);
-
-            if (spotlight)
-            {
-                audioSource.clip = TurnOnSound;
-                audioSource.Play();
-
-                spotlight.enabled = false;
-            }
         }
 
         protected void Start()
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
-            spotlight = GetComponentInChildren<Light>();
+            if (!audioSource)
+                audioSource = gameObject.AddComponent<AudioSource>();
+
+            if (!spotlight)
+            {
+                spotlight = GetComponentInChildren<Light>();
+                turnedOn = spotlight.enabled;
+            }
         }
     }
 }

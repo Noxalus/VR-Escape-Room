@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114295193834638842}
   - component: {fileID: 114382697010221508}
   - component: {fileID: 114280941202585340}
+  - component: {fileID: 114836868220156340}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Untagged
@@ -115,7 +116,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1638490020181364}
   m_LocalRotation: {x: -0.07022713, y: 0.5311736, z: 0.044240184, w: 0.84318775}
-  m_LocalPosition: {x: -7.8125, y: 1.2679, z: 5.9147}
+  m_LocalPosition: {x: -7.8314, y: 1.6828, z: 5.906}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4232820068275998}
@@ -211,10 +212,10 @@ Light:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960327081677194}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 8
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0.934, a: 1}
   m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 50
@@ -224,8 +225,8 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Bias: 0.0005
+    m_NormalBias: 0
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
@@ -236,7 +237,7 @@ Light:
     m_Bits: 4294967295
   m_Lightmapping: 4
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
@@ -314,7 +315,7 @@ MonoBehaviour:
   allowedTouchControllers: 0
   ignoredColliders: []
   isGrabbable: 1
-  holdButtonToGrab: 1
+  holdButtonToGrab: 0
   stayGrabbedOnTeleport: 1
   validDrop: 1
   grabOverrideButton: 0
@@ -323,13 +324,30 @@ MonoBehaviour:
   secondaryGrabActionScript: {fileID: 0}
   isUsable: 1
   holdButtonToUse: 0
-  useOnlyIfGrabbed: 1
+  useOnlyIfGrabbed: 0
   pointerActivatesUseAction: 0
   useOverrideButton: 0
   allowedUseControllers: 0
   usingState: 0
   TurnOnSound: {fileID: 8300000, guid: dccef45629776be449f0f88f97034e8e, type: 3}
   TurnOffSound: {fileID: 8300000, guid: 6b10277a6c1938e41802e1995db0d58d, type: 3}
+--- !u!114 &114836868220156340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1638490020181364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c08517e04830d6d44a13c5ea5f574181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  unhighlightOnDisable: 1
+  thickness: 0.5
+  customOutlineModels: []
+  customOutlineModelPaths: []
+  enableSubmeshHighlight: 0
 --- !u!135 &135777391865120854
 SphereCollider:
   m_ObjectHideFlags: 1
