@@ -38,11 +38,6 @@
             }
         }
 
-        public override void StopUsing(VRTK_InteractUse usingObject)
-        {
-            base.StopUsing(usingObject);
-        }
-
         protected void Start()
         {
             if (!audioSource)

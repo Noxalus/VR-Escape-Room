@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 using VRTK;
-using VRTK.UnityEventHelper;
+public class LightSwitch : VRTK_InteractableObject {
+    public GameObject LightsParent;
 
-public class LightSwitch : MonoBehaviour {
-    private VRTK_Button_UnityEvents buttonEvents;
-    private Light roomLight;
+    private Light[] lights;
 
     private void Start()
     {
-        buttonEvents = GetComponent<VRTK_Button_UnityEvents>();
-        if (buttonEvents == null)
-            buttonEvents = gameObject.AddComponent<VRTK_Button_UnityEvents>();
-
-        buttonEvents.OnPushed.AddListener(handlePush);
-        roomLight = GameObject.Find("RoomLight").GetComponent<Light>();
+        if (LightsParent)
+            lights = LightsParent.GetComponentsInChildren<Light>();
     }
 
-    private void handlePush(object sender, Control3DEventArgs e)
+    public override void StartUsing(VRTK_InteractUse usingObject)
     {
-        VRTK_Logger.Info("Pushed");
-        roomLight.enabled = !roomLight.enabled;
+        base.StartUsing(usingObject);
+
+        // TODO: Play animation
+        toggleLights();
+    }
+
+    private void toggleLights()
+    {
+        foreach(var light in lights)
+            light.enabled = !light.enabled;
     }
 }
