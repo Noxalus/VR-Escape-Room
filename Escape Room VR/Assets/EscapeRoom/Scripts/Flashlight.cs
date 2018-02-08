@@ -4,6 +4,8 @@
 
     public class Flashlight : VRTK_InteractableObject
     {
+        public Material lightRevealMaterial;
+
         private VRTK_ControllerReference controllerReference;
         private Light spotlight;
         public AudioClip TurnOnSound;
@@ -48,6 +50,13 @@
                 spotlight = GetComponentInChildren<Light>();
                 turnedOn = spotlight.enabled;
             }
+        }
+
+        protected void Update()
+        {
+            lightRevealMaterial.SetVector("_LightPosition", spotlight.transform.position);
+            lightRevealMaterial.SetVector("_LightDirection", -spotlight.transform.forward);
+            lightRevealMaterial.SetFloat("_LightAngle", spotlight.spotAngle);
         }
     }
 }

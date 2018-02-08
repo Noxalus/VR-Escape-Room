@@ -45,13 +45,13 @@
 			float3 direction = normalize(_LightPosition - IN.worldPos);
 			float scale = dot(direction, _LightDirection);
 			float strength = scale - cos(_LightAngle * (3.14 / 360.0));
-			strength = min(max(strength * 10, 0), 1);
+			strength = min(max(strength * 1000, 0), 1);
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-			o.Albedo = c.rgb;
+			o.Albedo = c.rgb * c.a * strength;
 			o.Emission = c.rgb * c.a * strength;
 			// Metallic and smoothness come from slider variables
-			o.Metallic = _Metallic;
-			o.Smoothness = _Glossiness;
+			o.Metallic = _Metallic * strength;
+			o.Smoothness = _Glossiness * strength;
 			o.Alpha = c.a * strength;
 		}
 		ENDCG
