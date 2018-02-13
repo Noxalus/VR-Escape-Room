@@ -144,6 +144,8 @@ ModelImporter:
     100272: VeryLongSizeKeyOriginal
     100274: VeryLongSizeKeyOriginal_001
     100276: VeryLongSizeKeyOriginal_002
+    100278: Empty
+    100280: Keyboard
     400000: Enter
     400002: //RootNode
     400004: Keyboard_001
@@ -283,6 +285,8 @@ ModelImporter:
     400272: VeryLongSizeKeyOriginal
     400274: VeryLongSizeKeyOriginal_001
     400276: VeryLongSizeKeyOriginal_002
+    400278: Empty
+    400280: Keyboard
     2100000: KeyMaterial
     2100002: unnamed
     2100004: Material
