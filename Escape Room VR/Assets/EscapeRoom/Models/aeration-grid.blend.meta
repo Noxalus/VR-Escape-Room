@@ -10,11 +10,21 @@ ModelImporter:
     100004: Cube_001
     100006: Cube_002
     100008: Cube_004
+    100010: Cube_003
+    100012: AerationGrid
+    100014: AerationGrid_001
+    100016: Cylinder
+    100018: Cylinder_001
     400000: //RootNode
     400002: Cube
     400004: Cube_001
     400006: Cube_002
     400008: Cube_004
+    400010: Cube_003
+    400012: AerationGrid
+    400014: AerationGrid_001
+    400016: Cylinder
+    400018: Cylinder_001
     2100000: unnamed
     2100002: Main
     2300000: //RootNode
@@ -22,15 +32,30 @@ ModelImporter:
     2300004: Cube_001
     2300006: Cube_002
     2300008: Cube_004
+    2300010: Cube_003
+    2300012: AerationGrid
+    2300014: AerationGrid_001
+    2300016: Cylinder
+    2300018: Cylinder_001
     3300000: //RootNode
     3300002: Cube
     3300004: Cube_001
     3300006: Cube_002
     3300008: Cube_004
+    3300010: Cube_003
+    3300012: AerationGrid
+    3300014: AerationGrid_001
+    3300016: Cylinder
+    3300018: Cylinder_001
     4300000: Cube
     4300002: Cube_001
     4300004: Cube_002
     4300006: Cube_004
+    4300008: Cube_003
+    4300010: AerationGrid_001
+    4300012: AerationGrid
+    4300014: Cylinder_001
+    4300016: Cylinder
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
