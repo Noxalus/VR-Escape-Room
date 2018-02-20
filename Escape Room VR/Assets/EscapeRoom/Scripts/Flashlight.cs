@@ -5,12 +5,15 @@
     public class Flashlight : VRTK_InteractableObject
     {
         public Material lightRevealMaterial;
+        public AudioClip TurnOnSound;
+        public AudioClip TurnOffSound;
 
         private VRTK_ControllerReference controllerReference;
         private Light spotlight;
-        public AudioClip TurnOnSound;
-        public AudioClip TurnOffSound;
         private AudioSource audioSource;
+        private VRTK_SnapDropZone filterDropZone;
+        private Color savedLightColor;
+        private bool revealMode = false;
 
         private bool turnedOn = false;
 
@@ -49,14 +52,43 @@
             {
                 spotlight = GetComponentInChildren<Light>();
                 turnedOn = spotlight.enabled;
+                savedLightColor = spotlight.color;
+            }
+
+            if (!filterDropZone)
+            {
+                filterDropZone = GetComponentInChildren<VRTK_SnapDropZone>();
+
+                if (filterDropZone)
+                {
+                    filterDropZone.ObjectSnappedToDropZone += FilterSnapped;
+                    filterDropZone.ObjectUnsnappedFromDropZone += FilterUnsnapped;
+                }
             }
         }
 
-        protected void Update()
+        private void FilterUnsnapped(object sender, SnapDropZoneEventArgs e)
         {
-            lightRevealMaterial.SetVector("_LightPosition", spotlight.transform.position);
-            lightRevealMaterial.SetVector("_LightDirection", -spotlight.transform.forward);
-            lightRevealMaterial.SetFloat("_LightAngle", spotlight.spotAngle);
+            revealMode = true;
+            spotlight.color = Color.white;
+        }
+
+        private void FilterSnapped(object sender, SnapDropZoneEventArgs e)
+        {
+            spotlight.color = Color.magenta;
+            revealMode = true;
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            if (revealMode)
+            {
+                lightRevealMaterial.SetVector("_LightPosition", spotlight.transform.position);
+                lightRevealMaterial.SetVector("_LightDirection", -spotlight.transform.forward);
+                lightRevealMaterial.SetFloat("_LightAngle", spotlight.spotAngle);
+            }
         }
     }
 }
