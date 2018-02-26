@@ -44,12 +44,6 @@
             }
         }
 
-        public void Open()
-        {
-            SetRotation();
-            open = !open;
-        }
-
         private void SetRotation()
         {
             openRotation = new Vector3(defaultRotation.x, defaultRotation.y + (doorOpenAngle * (sideFlip * side)), defaultRotation.z);

@@ -1,63 +1,61 @@
-﻿namespace VRTK.Examples
+﻿using UnityEngine;
+using VRTK;
+
+public class OpenableDoor : VRTK_InteractableObject
 {
-    using UnityEngine;
+    public bool flipped = false;
+    public bool rotated = false;
 
-    public class OpenableDoor : VRTK_InteractableObject
+    private float sideFlip = -1;
+    private float side = -1;
+    private float smooth = 270.0f;
+    private float doorOpenAngle = -90f;
+    private bool open = false;
+
+    private Vector3 defaultRotation;
+    private Vector3 openRotation;
+
+    public override void StartUsing(VRTK_InteractUse usingObject)
     {
-        public bool flipped = false;
-        public bool rotated = false;
+        base.StartUsing(usingObject);
+        SetDoorRotation(usingObject.transform.position);
+        SetRotation();
+        open = !open;
+    }
 
-        private float sideFlip = -1;
-        private float side = -1;
-        private float smooth = 270.0f;
-        private float doorOpenAngle = -90f;
-        private bool open = false;
+    protected void Start()
+    {
+        defaultRotation = transform.eulerAngles;
+        SetRotation();
+        sideFlip = (flipped ? 1 : -1);
+    }
 
-        private Vector3 defaultRotation;
-        private Vector3 openRotation;
-
-        public override void StartUsing(VRTK_InteractUse usingObject)
+    protected override void Update()
+    {
+        base.Update();
+        if (open)
         {
-            base.StartUsing(usingObject);
-            SetDoorRotation(usingObject.transform.position);
-            SetRotation();
-            open = !open;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(openRotation), Time.deltaTime * smooth);
         }
-
-        protected void Start()
+        else
         {
-            defaultRotation = transform.eulerAngles;
-            SetRotation();
-            sideFlip = (flipped ? 1 : -1);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(defaultRotation), Time.deltaTime * smooth);
         }
+    }
 
-        protected override void Update()
-        {
-            base.Update();
-            if (open)
-            {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(openRotation), Time.deltaTime * smooth);
-            }
-            else
-            {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(defaultRotation), Time.deltaTime * smooth);
-            }
-        }
+    public void Open()
+    {
+        SetRotation();
+        open = !open;
+    }
 
-        public void Open()
-        {
-            SetRotation();
-            open = !open;
-        }
+    private void SetRotation()
+    {
+        openRotation = new Vector3(defaultRotation.x, defaultRotation.y + (doorOpenAngle * (sideFlip * side)), defaultRotation.z);
+    }
 
-        private void SetRotation()
-        {
-            openRotation = new Vector3(defaultRotation.x, defaultRotation.y + (doorOpenAngle * (sideFlip * side)), defaultRotation.z);
-        }
-
-        private void SetDoorRotation(Vector3 interacterPosition)
-        {
-            side = ((rotated == false && interacterPosition.z > transform.position.z) || (rotated == true && interacterPosition.x > transform.position.x) ? -1 : 1);
-        }
+    private void SetDoorRotation(Vector3 interacterPosition)
+    {
+        side = ((rotated == false && interacterPosition.z > transform.position.z) || (rotated == true && interacterPosition.x > transform.position.x) ? -1 : 1);
     }
 }
