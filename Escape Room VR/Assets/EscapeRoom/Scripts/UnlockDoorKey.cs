@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using VRTK;
-using VRTK.Examples;
 
 public class UnlockDoorKey : MonoBehaviour {
 
@@ -10,9 +9,11 @@ public class UnlockDoorKey : MonoBehaviour {
 
     private VRTK_SnapDropZone keyDropZone;
     private Vector3 defaultRotation;
-    private bool animationStarted = false;
+    private Vector3 openRotation;
+    private bool playingAnimation = false;
 
-    void Start () {
+    void Start ()
+    {
         if (Door)
         {
             keyDropZone = Door.GetComponentInChildren<VRTK_SnapDropZone>();
@@ -23,34 +24,39 @@ public class UnlockDoorKey : MonoBehaviour {
     private void PlayKeyAnimation()
     {
         // TODO: Play sound
-        animationStarted = true;
         defaultRotation = transform.eulerAngles;
+        openRotation = new Vector3(defaultRotation.x, defaultRotation.y, defaultRotation.z) + Vector3.forward * Angle;
+
+        playingAnimation = true;
     }
 
     private void OpenDoor()
     {
-        animationStarted = false;
-        var openableDoorScript = Door.GetComponent<Openable_Door>();
+        var openableDoorScript = Door.GetComponent<OpenableDoor>();
 
         if (openableDoorScript)
-        {
-            //openableDoorScript.StartUsing(gameObject);
-            openableDoorScript.isUsable = true;
-        }
+            openableDoorScript.Open();
     }
 
     private void KeySnappedToDropZone(object sender, SnapDropZoneEventArgs e)
     {
         PlayKeyAnimation();
+        // TODO: Not grabbable anymore
     }
 
-    void Update () {
-        if (animationStarted)
+    void Update ()
+    {
+        if (playingAnimation)
         {
-            if (transform.localEulerAngles.x < defaultRotation.x + Angle * Mathf.Deg2Rad)
-                transform.Rotate(Vector3.down, AnimationSpeed * Time.deltaTime, Space.Self);
-            else
+            var openQuat = Quaternion.Euler(openRotation);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, openQuat, Time.deltaTime * AnimationSpeed);
+
+            if (Quaternion.Dot(transform.rotation, openQuat) >= 1f)
+            {
+                playingAnimation = false;
                 OpenDoor();
+            }
         }
     }
 }

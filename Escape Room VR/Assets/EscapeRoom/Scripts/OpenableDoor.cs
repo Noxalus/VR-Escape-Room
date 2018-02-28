@@ -5,6 +5,7 @@ public class OpenableDoor : VRTK_InteractableObject
 {
     public bool flipped = false;
     public bool rotated = false;
+    public GameObject doorObject = null;
 
     private float sideFlip = -1;
     private float side = -1;
@@ -25,7 +26,11 @@ public class OpenableDoor : VRTK_InteractableObject
 
     protected void Start()
     {
-        defaultRotation = transform.eulerAngles;
+        if (doorObject)
+            defaultRotation = doorObject.transform.eulerAngles;
+        else
+            defaultRotation = transform.eulerAngles;
+
         SetRotation();
         sideFlip = (flipped ? 1 : -1);
     }
@@ -33,19 +38,25 @@ public class OpenableDoor : VRTK_InteractableObject
     protected override void Update()
     {
         base.Update();
+
         if (open)
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(openRotation), Time.deltaTime * smooth);
+            if (doorObject)
+                doorObject.transform.rotation = Quaternion.RotateTowards(doorObject.transform.rotation, Quaternion.Euler(openRotation), Time.deltaTime * smooth);
+            else
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(openRotation), Time.deltaTime * smooth);
         }
         else
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(defaultRotation), Time.deltaTime * smooth);
+            if (doorObject)
+                doorObject.transform.rotation = Quaternion.RotateTowards(doorObject.transform.rotation, Quaternion.Euler(defaultRotation), Time.deltaTime * smooth);
+            else
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(defaultRotation), Time.deltaTime * smooth);
         }
     }
 
     public void Open()
     {
-        SetRotation();
         open = !open;
     }
 
@@ -56,6 +67,9 @@ public class OpenableDoor : VRTK_InteractableObject
 
     private void SetDoorRotation(Vector3 interacterPosition)
     {
-        side = ((rotated == false && interacterPosition.z > transform.position.z) || (rotated == true && interacterPosition.x > transform.position.x) ? -1 : 1);
+        if (doorObject)
+            side = ((rotated == false && interacterPosition.z > doorObject.transform.position.z) || (rotated == true && interacterPosition.x > doorObject.transform.position.x) ? -1 : 1);
+        else
+            side = ((rotated == false && interacterPosition.z > transform.position.z) || (rotated == true && interacterPosition.x > transform.position.x) ? -1 : 1);
     }
 }
