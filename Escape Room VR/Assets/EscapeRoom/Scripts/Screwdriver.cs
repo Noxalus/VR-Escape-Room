@@ -5,13 +5,13 @@ public class Screwdriver : VRTK_InteractableObject
 {
     float spinSpeed = 0f;
     Transform rotator;
-    private GameObject blade;
+    private GameObject screwTip;
     private Screw currentScrewComponent;
 
     protected void Start()
     {
-        rotator = transform.Find("Blade");
-        blade = GameObject.Find("Blade");
+        screwTip = GameObject.Find("ScrewTip");
+        rotator = screwTip.transform;
     }
 
     public override void StartUsing(VRTK_InteractUse usingObject)
@@ -28,19 +28,19 @@ public class Screwdriver : VRTK_InteractableObject
 
     protected virtual void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.name == "ScrewdriverBase")
+        if (collider.gameObject.name == "Screw")
         {
-            currentScrewComponent = collider.gameObject.transform.parent.gameObject.GetComponent<Screw>();
-            blade.GetComponent<Renderer>().material.color = Color.red;
+            currentScrewComponent = collider.gameObject.GetComponent<Screw>();
+            screwTip.GetComponent<Renderer>().material.color = Color.red;
         }
     }
 
     protected virtual void OnTriggerExit(Collider collider)
     {
-        if (collider.gameObject.name == "ScrewdriverBase")
+        if (collider.gameObject.name == "Screw")
         {
             currentScrewComponent = null;
-            blade.GetComponent<Renderer>().material.color = Color.gray;
+            screwTip.GetComponent<Renderer>().material.color = Color.gray;
         }
     }
 

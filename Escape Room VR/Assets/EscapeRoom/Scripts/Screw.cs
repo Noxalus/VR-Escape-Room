@@ -24,20 +24,20 @@ public class Screw : MonoBehaviour {
         if (unscrewed)
             return;
 
-        transform.Translate(new Vector3(speed * deltaTime, 0f, 0f));
+        transform.Translate(new Vector3(0f, 0f, speed * deltaTime));
 
-        if (transform.localPosition.x >= screwOffset)
-        {
-            gameObject.AddComponent<Rigidbody>();
+        //if (transform.localPosition.x >= screwOffset)
+        //{
+        //    gameObject.AddComponent<Rigidbody>();
 
-            var rigidBody = gameObject.GetComponent<Rigidbody>();
-            rigidBody.AddTorque(Random.Range(-60f, 60f), Random.Range(-60f, 60f), Random.Range(-60f, 60f));
-            rigidBody.AddForce(Random.Range(0f, 10f), 0f, 0f);
+        //    var rigidBody = gameObject.GetComponent<Rigidbody>();
+        //    rigidBody.AddTorque(Random.Range(-60f, 60f), Random.Range(-60f, 60f), Random.Range(-60f, 60f));
+        //    rigidBody.AddForce(Random.Range(0f, 10f), 0f, 0f);
 
-            unscrewed = true;
-            transform.SetParent(transform.parent.transform.parent.transform);
+        //    unscrewed = true;
+        //    transform.SetParent(transform.parent.transform.parent.transform);
 
-            screwPlate.OnUnscrew(this);
-        }
+        //    screwPlate.OnUnscrew(this);
+        //}
     }
 }
