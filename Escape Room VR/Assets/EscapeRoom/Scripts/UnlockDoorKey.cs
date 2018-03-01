@@ -14,6 +14,8 @@ public class UnlockDoorKey : MonoBehaviour {
 
     void Start ()
     {
+        //PlayKeyAnimation();
+
         if (Door)
         {
             keyDropZone = Door.GetComponentInChildren<VRTK_SnapDropZone>();
