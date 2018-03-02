@@ -28,8 +28,12 @@ public class ScrewedPlate : MonoBehaviour {
         if (free)
             return;
 
-        var rigidBody = gameObject.AddComponent<Rigidbody>();
+        var rigidBody = gameObject.GetComponent<Rigidbody>();
+        rigidBody.useGravity = true;
         rigidBody.mass = 50f;
+
+        var boxCollider = gameObject.GetComponent<BoxCollider>();
+        boxCollider.isTrigger = false;
 
         var interactableObject = gameObject.AddComponent<VRTK_InteractableObject>();
         interactableObject.isGrabbable = true;

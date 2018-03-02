@@ -28,7 +28,7 @@ public class Screwdriver : VRTK_InteractableObject
 
     protected virtual void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.name == "Screw")
+        if (collider.gameObject.GetComponent<Screw>())
         {
             currentScrewComponent = collider.gameObject.GetComponent<Screw>();
             screwTip.GetComponent<Renderer>().material.color = Color.red;

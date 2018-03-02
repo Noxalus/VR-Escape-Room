@@ -8,10 +8,27 @@ public class Screw : MonoBehaviour {
     private float screwOffset = 0.075f;
     private bool unscrewed = false;
     private float speed = 0.1f;
+    private BoxCollider screwPartCollider;
 
     protected void Start()
     {
         screwPlate = transform.parent.gameObject.GetComponent<ScrewedPlate>();
+        var colliders = gameObject.GetComponentsInChildren<BoxCollider>();
+
+        foreach (var collider in colliders)
+        {
+            if (collider.name == "ScrewedPart")
+            {
+                screwPartCollider = collider;
+                break;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.name == "AerationGrid")
+            Unscrewed();
     }
 
     public bool IsScrewed()
@@ -25,19 +42,29 @@ public class Screw : MonoBehaviour {
             return;
 
         transform.Translate(new Vector3(0f, 0f, speed * deltaTime));
+        transform.Rotate(new Vector3(0f, 0f, 90f * deltaTime));
+    }
 
-        //if (transform.localPosition.x >= screwOffset)
-        //{
-        //    gameObject.AddComponent<Rigidbody>();
+    private void Unscrewed()
+    {
+        //var savedParentPosition = transform.parent.position;
+        //transform.SetParent(transform.parent.transform.parent.transform, true);
+        //transform.position -= savedParentPosition;
 
-        //    var rigidBody = gameObject.GetComponent<Rigidbody>();
-        //    rigidBody.AddTorque(Random.Range(-60f, 60f), Random.Range(-60f, 60f), Random.Range(-60f, 60f));
-        //    rigidBody.AddForce(Random.Range(0f, 10f), 0f, 0f);
+        var rigidBody = gameObject.GetComponent<Rigidbody>();
+        rigidBody.useGravity = true;
+        rigidBody.AddTorque(Random.Range(-60f, 60f), Random.Range(-60f, 60f), Random.Range(-60f, 60f));
+        rigidBody.AddForce(Random.Range(0f, 10f), 0f, 0f);
+        unscrewed = true;
 
-        //    unscrewed = true;
-        //    transform.SetParent(transform.parent.transform.parent.transform);
+        screwPlate.OnUnscrew(this);
+    }
 
-        //    screwPlate.OnUnscrew(this);
-        //}
+    private void SetParent(Transform parent)
+    {
+        transform.parent = parent;
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        transform.localScale = Vector3.one;
     }
 }
