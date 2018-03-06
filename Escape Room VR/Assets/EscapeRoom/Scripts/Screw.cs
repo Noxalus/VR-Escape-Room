@@ -41,8 +41,8 @@ public class Screw : MonoBehaviour {
         if (unscrewed)
             return;
 
-        transform.Translate(new Vector3(0f, 0f, speed * deltaTime));
-        transform.Rotate(new Vector3(0f, 0f, 90f * deltaTime));
+        transform.Translate(new Vector3(0f, -speed * deltaTime, 0f));
+        //transform.Rotate(new Vector3(0f, 0f, 90f * deltaTime));
     }
 
     private void Unscrewed()
@@ -53,8 +53,9 @@ public class Screw : MonoBehaviour {
 
         var rigidBody = gameObject.GetComponent<Rigidbody>();
         rigidBody.useGravity = true;
+        rigidBody.isKinematic = false;
         rigidBody.AddTorque(Random.Range(-60f, 60f), Random.Range(-60f, 60f), Random.Range(-60f, 60f));
-        rigidBody.AddForce(Random.Range(0f, 10f), 0f, 0f);
+        rigidBody.AddForce(0f, Random.Range(0f, 10f), 0f);
         unscrewed = true;
 
         screwPlate.OnUnscrew(this);
