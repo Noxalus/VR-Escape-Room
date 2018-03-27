@@ -6,11 +6,21 @@ ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Can
+    100004: Plug
     400000: //RootNode
+    400002: Can
+    400004: Plug
     2100000: Material
     2300000: //RootNode
+    2300002: Can
+    2300004: Plug
     3300000: //RootNode
+    3300002: Can
+    3300004: Plug
     4300000: Cube
+    4300002: Plug
+    4300004: Can
     7400000: Default Take
     9500000: //RootNode
   externalObjects:
