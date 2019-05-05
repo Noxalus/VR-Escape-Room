@@ -14,6 +14,9 @@ ModelImporter:
     100012: DeskDrawers2
     100014: DeskPart
     100016: DeskDrawers2_001
+    100018: Cube
+    100020: Cube_001
+    100022: DeskDrawers2_002
     400000: //RootNode
     400002: Desk
     400004: Drawer
@@ -23,6 +26,9 @@ ModelImporter:
     400012: DeskDrawers2
     400014: DeskPart
     400016: DeskDrawers2_001
+    400018: Cube
+    400020: Cube_001
+    400022: DeskDrawers2_002
     2100000: unnamed
     2100002: Main
     2300000: //RootNode
@@ -34,6 +40,9 @@ ModelImporter:
     2300012: DeskDrawers2
     2300014: DeskPart
     2300016: DeskDrawers2_001
+    2300018: Cube
+    2300020: Cube_001
+    2300022: DeskDrawers2_002
     3300000: //RootNode
     3300002: Desk
     3300004: Drawer
@@ -43,6 +52,9 @@ ModelImporter:
     3300012: DeskDrawers2
     3300014: DeskPart
     3300016: DeskDrawers2_001
+    3300018: Cube
+    3300020: Cube_001
+    3300022: DeskDrawers2_002
     4300000: Cube
     4300002: Drawer
     4300004: Handle
@@ -52,6 +64,8 @@ ModelImporter:
     4300012: DeskDrawers2
     4300014: DeskPart
     4300016: DeskDrawers2_001
+    4300018: Cube_001
+    4300020: DeskDrawers2_002
   externalObjects:
   - first:
       type: UnityEngine:Material
